@@ -1,242 +1,327 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#18342d">
-  <meta name="description" content="Okumu Carlos is a software engineer in Nairobi, Kenya, focused on financial data, payments, and USSD systems.">
-  <title>Okumu Carlos — Software Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: light;
-      --paper: #f3eedf;
-      --paper-light: #fbf8ef;
-      --ink: #1d2823;
-      --muted: #64716a;
-      --forest: #18342d;
-      --forest-light: #294b40;
-      --red: #b74932;
-      --yellow: #e6bd55;
-      --line: rgba(29, 40, 35, .2);
-      --mono: "IBM Plex Mono", "Courier New", monospace;
-      --sans: "DM Sans", "Segoe UI", sans-serif;
-      --display: "Barlow Condensed", Impact, sans-serif;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background-color: var(--paper);
-      background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgba(72, 90, 75, .045) 31px 32px);
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
-    .mono { font-family: var(--mono); }
-    .eyebrow { font: 500 11px/1.5 var(--mono); letter-spacing: 0; text-transform: uppercase; }
-    .section-label { color: var(--red); }
-    .topbar { position: sticky; z-index: 5; top: 0; color: var(--paper-light); background: var(--forest); border-bottom: 1px solid rgba(255,255,255,.15); }
-    .topbar-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 600 11px var(--mono); text-transform: uppercase; }
-    .brand-mark { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--yellow); color: var(--yellow); font: 700 15px var(--display); }
-    .nav { display: flex; gap: clamp(14px, 3vw, 36px); align-items: center; }
-    .nav a { color: #e7eadd; text-decoration: none; font: 400 10px var(--mono); text-transform: uppercase; transition: color .18s ease; }
-    .nav a:hover { color: var(--yellow); }
-    .nav .nav-contact { padding: 10px 13px; border: 1px solid rgba(255,255,255,.4); }
-    .hero { padding: clamp(56px, 9vw, 112px) 0 88px; overflow: hidden; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .75fr); align-items: center; gap: clamp(36px, 8vw, 104px); }
-    .hero-copy { animation: rise-in .7s both; }
-    .hero-kicker { display: flex; align-items: center; gap: 10px; color: var(--forest-light); }
-    .hero-kicker::before { content: ""; width: 28px; border-top: 2px solid var(--red); }
-    h1 { margin: 19px 0 20px; font: 700 clamp(68px, 10vw, 122px)/.79 var(--display); letter-spacing: 0; text-transform: uppercase; }
-    h1 span { display: block; color: var(--red); }
-    .hero-role { margin: 0; font: 600 14px var(--mono); text-transform: uppercase; }
-    .hero-intro { max-width: 500px; margin: 20px 0 28px; color: #4e5b54; font-size: 16px; line-height: 1.75; }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-    .button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 0 18px; border: 1px solid var(--forest); color: var(--paper-light); background: var(--forest); text-decoration: none; font: 500 11px var(--mono); text-transform: uppercase; transition: transform .18s ease, background .18s ease; }
-    .button:hover { transform: translateY(-2px); background: var(--forest-light); }
-    .button.secondary { color: var(--ink); background: transparent; }
-    .button.secondary:hover { background: rgba(255,255,255,.45); }
-    .notebook-wrap { position: relative; animation: rise-in .85s .1s both; }
-    .notebook { position: relative; min-height: 360px; padding: 30px 32px 28px 54px; border: 1px solid rgba(29,40,35,.6); background-color: #e9d7a8; background-image: repeating-linear-gradient(0deg, transparent 0 27px, rgba(85,71,42,.1) 27px 28px); box-shadow: 9px 10px 0 rgba(24,52,45,.12); transform: rotate(1.5deg); }
-    .notebook::before { content: ""; position: absolute; inset: 0 auto 0 19px; border-left: 1px solid rgba(183,73,50,.48); }
-    .coil { position: absolute; top: 18px; bottom: 18px; left: 3px; width: 18px; display: flex; flex-direction: column; justify-content: space-between; }
-    .coil i { width: 13px; height: 8px; border: 2px solid var(--forest); border-radius: 50%; background: var(--paper); }
-    .notebook-meta { display: flex; justify-content: space-between; gap: 14px; color: #545547; font: 500 9px var(--mono); text-transform: uppercase; }
-    .orbit { position: relative; width: 142px; height: 112px; margin: 26px auto 21px; display: grid; place-items: center; }
-    .orbit i { position: absolute; width: 100%; height: 56%; border: 1px solid rgba(29,40,35,.75); border-radius: 50%; transform: rotate(-15deg); }
-    .orbit i:nth-child(2) { width: 74%; height: 43%; }
-    .orbit i:nth-child(3) { width: 46%; height: 28%; }
-    .orbit i:nth-child(4) { width: 13px; height: 13px; border: 0; background: var(--red); box-shadow: 0 0 0 5px rgba(183,73,50,.18); }
-    .notebook-note { max-width: 230px; margin: 0 auto; color: #485247; font: 400 11px/1.8 var(--mono); }
-    .notebook-note strong { color: var(--ink); font-weight: 600; }
-    .notebook-signoff { margin: 21px 0 0; color: var(--red); font: italic 15px/1.4 Georgia, serif; transform: rotate(-4deg); }
-    .seal { position: absolute; right: 24px; bottom: 22px; width: 30px; height: 30px; border: 5px solid var(--red); border-radius: 50%; opacity: .8; }
-    .availability { position: absolute; right: -14px; top: -20px; padding: 10px 12px; color: var(--paper-light); background: var(--red); font: 500 9px var(--mono); text-transform: uppercase; transform: rotate(3deg); }
-    .section { padding: 84px 0; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 34px; }
-    .section-head h2 { margin: 7px 0 0; font: 700 clamp(42px, 6vw, 64px)/.9 var(--display); letter-spacing: 0; text-transform: uppercase; }
-    .section-aside { max-width: 310px; margin: 0; color: var(--muted); font: 400 11px/1.7 var(--mono); }
-    .projects-section { background: var(--paper-light); border-block: 1px solid var(--line); }
-    .project-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-    .project { min-height: 230px; padding: 24px 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .2s ease; }
-    .project:hover { background: #f4eddd; }
-    .project-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-    .project-number { color: var(--red); font: 500 11px var(--mono); }
-    .status { padding: 5px 7px; color: #713e29; border: 1px solid rgba(183,73,50,.45); font: 500 9px var(--mono); text-transform: uppercase; }
-    .status.open { color: var(--forest); border-color: rgba(24,52,45,.4); }
-    .project h3 { margin: 23px 0 8px; font: 700 31px/.95 var(--display); text-transform: uppercase; }
-    .project p { max-width: 460px; margin: 0; color: #58635c; font-size: 13px; line-height: 1.7; }
-    .project-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 14px; margin-top: 20px; }
-    .tech { color: var(--muted); font: 400 9px/1.7 var(--mono); }
-    .project-link { color: var(--red); font: 500 10px var(--mono); text-decoration-thickness: 1px; text-underline-offset: 4px; white-space: nowrap; }
-    .service-section { color: var(--paper-light); background: var(--forest); }
-    .service-section .section-label { color: var(--yellow); }
-    .service-section .section-aside { color: #c1cec3; }
-    .service-list { border-top: 1px solid rgba(255,255,255,.3); }
-    .service-row { display: grid; grid-template-columns: minmax(145px, .42fr) minmax(0, 1fr) minmax(105px, .35fr); gap: 28px; padding: 25px 0; border-bottom: 1px solid rgba(255,255,255,.22); }
-    .service-date { color: var(--yellow); font: 400 10px/1.7 var(--mono); }
-    .service-row h3 { margin: 0 0 8px; font: 600 23px/1 var(--display); text-transform: uppercase; }
-    .service-row p { max-width: 620px; margin: 0; color: #d3ddd3; font-size: 12px; line-height: 1.7; }
-    .service-stack { color: #b9c9bf; font: 400 9px/1.7 var(--mono); text-align: right; }
-    .education { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 26px; }
-    .education h3 { margin: 7px 0 0; font: 600 20px var(--display); text-transform: uppercase; }
-    .education p { margin: 0; color: #d3ddd3; font: 400 10px/1.7 var(--mono); text-align: right; }
-    .kit-section { border-bottom: 1px solid var(--line); }
-    .kit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 52px; }
-    .kit-item { padding: 19px 0; border-top: 1px solid var(--line); }
-    .kit-item h3 { margin: 0 0 8px; color: var(--red); font: 600 11px var(--mono); text-transform: uppercase; }
-    .kit-item p { margin: 0; color: #4e5b54; font-size: 13px; line-height: 1.8; }
-    .kit-note { margin: 27px 0 0; color: var(--forest); font: italic 19px Georgia, serif; }
-    .contact-section { padding: 72px 0; background: var(--yellow); }
-    .contact-grid { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; }
-    .contact-section h2 { margin: 8px 0 12px; font: 700 clamp(44px, 7vw, 76px)/.86 var(--display); text-transform: uppercase; }
-    .contact-section p { max-width: 500px; margin: 0; color: #4a4939; font-size: 14px; line-height: 1.7; }
-    .contact-links { display: grid; gap: 11px; justify-items: start; }
-    .contact-links a { color: var(--ink); font: 500 11px var(--mono); text-decoration-thickness: 1px; text-underline-offset: 4px; }
-    footer { padding: 18px 0; color: #d4dfd5; background: var(--forest); }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; font: 400 9px var(--mono); }
-    .footer-inner a { color: var(--yellow); text-decoration: none; }
-    @keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 34px, 560px); }
-      .topbar-inner { min-height: 58px; gap: 12px; }
-      .brand { gap: 8px; font-size: 9px; }
-      .brand-mark { width: 25px; height: 25px; }
-      .nav { gap: 13px; }
-      .nav a { font-size: 8px; }
-      .nav .nav-contact { padding: 8px; }
-      .hero { padding: 62px 0 65px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
-      h1 { font-size: clamp(66px, 17vw, 100px); }
-      .notebook-wrap { width: min(100% - 18px, 390px); margin-inline: auto; }
-      .notebook { min-height: 330px; }
-      .section { padding: 64px 0; }
-      .section-head { align-items: start; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-      .section-aside { max-width: 440px; }
-      .service-row { grid-template-columns: 1fr auto; gap: 8px 20px; }
-      .service-row > div:nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
-      .service-stack { grid-column: 2; grid-row: 1; }
-      .service-date { grid-column: 1; grid-row: 1; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .contact-links { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .wrap { width: calc(100% - 28px); }
-      .brand-label { max-width: 82px; line-height: 1.4; }
-      .nav { gap: 10px; }
-      .nav a { font-size: 7px; }
-      .nav a:nth-child(3) { display: none; }
-      .hero-intro { font-size: 14px; }
-      .project-list, .kit-grid { grid-template-columns: 1fr; }
-      .project { min-height: auto; padding: 22px 18px; }
-      .project h3 { margin-top: 18px; }
-      .kit-grid { column-gap: 0; }
-      .education { align-items: start; flex-direction: column; }
-      .education p { text-align: left; }
-      .contact-links { grid-template-columns: 1fr; }
-      .footer-inner { align-items: start; flex-direction: column; gap: 8px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Okumu Carlos — Software Engineer</title>
+<meta name="description" content="Okumu Carlos, software engineer in Nairobi working in Go, TypeScript, Python and Kotlin on financial market data, payments and USSD.">
+<meta name="theme-color" content="#14100b">
+<meta property="og:title" content="Okumu Carlos — Software Engineer">
+<meta property="og:description" content="Okumu Carlos, software engineer in Nairobi working in Go, TypeScript, Python and Kotlin on financial market data, payments and USSD.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%2314100b%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Arial%20Narrow%2CArial%2Csans-serif%22%20font-size%3D%2230%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ecdcae%22%3EOC%3C/text%3E%3Crect%20x%3D%2214%22%20y%3D%2250%22%20width%3D%2236%22%20height%3D%224%22%20fill%3D%22%23a8421f%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;family=Oswald:wght@500;700&amp;family=Special+Elite&amp;display=swap">
+<style>
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#14100b}
+*{box-sizing:border-box}
+.oswald{font-family:'Oswald','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.type{font-family:'Special Elite','Courier New',monospace}
+.hand{font-family:'Caveat','Segoe Script',cursive}
+.paper{background:radial-gradient(ellipse at 18% 8%,#e6d3a2 0%,#d8c28c 52%,#c6aa6c 100%);color:#2b2014}
+.pg{position:relative;padding:60px 54px;flex:1 1 480px;min-width:0}
+.navlink{color:#ecdcae;text-decoration:none;font-size:15px;padding:8px 2px}
+.navlink:hover{color:#ffffff;text-decoration:underline}
+.menu-row{display:block;padding:11px 16px;text-decoration:none;color:#2b2014;font-family:'Oswald','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:22px;font-weight:500}
+.menu-row:hover,.menu-row:focus-visible{background:var(--accent);color:#f6ebcf}
+a:focus-visible{outline:2px solid #2b2014;outline-offset:2px}
+.tape{position:absolute;width:128px;height:32px;background:rgba(226,192,94,.62);clip-path:polygon(0 8%,4% 0,9% 10%,14% 0,100% 6%,96% 50%,100% 94%,92% 100%,86% 90%,80% 100%,0 92%,3% 50%)}
+.torn{clip-path:polygon(0 1.5%,5% 0,11% 1.8%,19% 0.4%,27% 1.6%,36% 0,45% 1.4%,55% 0.2%,64% 1.7%,73% 0,82% 1.5%,91% 0.3%,100% 1.4%,99% 30%,100% 62%,98.6% 100%,90% 98.4%,80% 100%,70% 98.5%,58% 100%,47% 98.2%,36% 100%,24% 98.6%,12% 100%,0 98.5%,1.2% 64%,0 30%)}
+.stamp{display:inline-block;border:2px solid #7a2f14;color:#7a2f14;font-family:'Oswald','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;padding:2px 9px;transform:rotate(-3deg)}
+.entry{padding:20px 0;border-top:1px dashed #6b5636}
+.entry h3{margin:0;font-size:32px;font-weight:700;color:#2b2014;line-height:1.1}
+.entry p{margin:0}
+.bullets{margin:0 0 8px;padding-left:18px;font-size:15px;line-height:1.55}
+.bullets li{margin-bottom:5px}
+@media (max-width:900px){.rings{display:none !important}.pg{padding:44px 24px}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#top" aria-label="Okumu Carlos, home"><span class="brand-mark">OC</span><span class="brand-label">O.C. Field Notes</span></a>
-      <nav class="nav" aria-label="Main navigation"><a href="#service">Service record</a><a href="#dispatches">Dispatches</a><a href="#kit">Kit</a><a class="nav-contact" href="#contact">Contact <span aria-hidden="true">↗</span></a></nav>
-    </div>
-  </header>
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow hero-kicker">Portfolio / Volume 01 / Nairobi, Kenya</p>
-          <h1>Okumu <span>Carlos</span></h1>
-          <p class="hero-role">Software engineer · Go · TypeScript · Python · Kotlin</p>
-          <p class="hero-intro">I build dependable software for financial data, payments, and USSD. Interested in the systems underneath: clear interfaces, careful data models, and infrastructure that holds up in the real world.</p>
-          <div class="hero-actions"><a class="button" href="#dispatches">Explore selected work <span aria-hidden="true">↓</span></a><a class="button secondary" href="mailto:carlosokumu254@gmail.com">Get in touch <span aria-hidden="true">↗</span></a></div>
-        </div>
-        <div class="notebook-wrap" aria-label="Profile note: software engineer based in Nairobi, Kenya">
-          <span class="availability">Open to good work</span>
-          <div class="notebook">
-            <div class="coil" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="notebook-meta"><span>Field note / 001</span><span>0° 01′ S</span></div>
-            <div class="orbit" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-            <p class="notebook-note"><strong>Working principle</strong><br>Build the useful thing.<br>Make the data trustworthy.<br>Leave the system easier to understand.</p>
-            <p class="notebook-signoff">Built in Nairobi, shipped everywhere →</p><span class="seal" aria-hidden="true"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section projects-section" id="dispatches">
-      <div class="wrap">
-        <div class="section-head"><div><p class="eyebrow section-label">01 / Selected work</p><h2>Dispatches</h2></div><p class="section-aside">A few systems in progress, in production, and out in the open.</p></div>
-        <div class="project-list">
-          <article class="project"><div class="project-top"><span class="project-number">01 / Payments</span><span class="status">In progress</span></div><h3>ElimuCard</h3><p>A school canteen payment and biometric identity system for Kenya, with an Android app architecture and roadmap.</p><div class="project-footer"><span class="tech">Android · Kotlin · Jetpack Compose</span><a class="project-link" href="https://drive.google.com/file/d/1AlfXSJQ2N7AdS3b-ysiEu5KqmzIqQfZT/view" target="_blank" rel="noreferrer">See demo ↗</a></div></article>
-          <article class="project"><div class="project-top"><span class="project-number">02 / Market data</span><span class="status">In progress</span></div><h3>Account-Connect</h3><p>A Go service that brings eTrader, Binance, and Alpaca into one WebSocket API for OHLC history, ticks, order books, and live streams.</p><div class="project-footer"><span class="tech">Go · WebSockets · Protobuf · eTrader · Binance · Alpaca</span><a class="project-link" href="https://github.com/Carlosokumu/account-connect" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
-          <article class="project"><div class="project-top"><span class="project-number">03 / Open source</span><span class="status open">Contribution</span></div><h3>Go-Vise</h3><p>A constrained-size output virtual machine for USSD-based navigation, contributed to the Grassroots Economics Foundation.</p><div class="project-footer"><span class="tech">Go · USSD</span><a class="project-link" href="https://github.com/nolash/go-vise" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
-          <article class="project"><div class="project-top"><span class="project-number">04 / Ledger</span><span class="status open">Open source</span></div><h3>Usawa</h3><p>A signed, immutable double-entry ledger with a GTK4/Adwaita interface, multi-part entries, XML export, and NaCl-backed wallet encryption.</p><div class="project-footer"><span class="tech">Python · GTK4 · Adwaita · NaCl · Argon2</span><a class="project-link" href="https://github.com/nolash/usawa" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
-        </div>
-      </div>
-    </section>
-    <section class="section service-section" id="service">
-      <div class="wrap">
-        <div class="section-head"><div><p class="eyebrow section-label">02 / Where I have worked</p><h2>Service record</h2></div><p class="section-aside">Backend engineering across payments, community finance, and developer tooling.</p></div>
-        <div class="service-list">
-          <article class="service-row"><div class="service-date">Jun 2026 — Sep 2026</div><div><h3>Software Engineer · Open source</h3><p>Built features for a Python double-entry ledger; made entries cryptographically signed and immutable; added multi-part entries, XML export, and sorting; moved wallet encryption to NaCl SecretBox with Argon2 key derivation.</p></div><div class="service-stack">Python<br>GTK4 / Adwaita<br>NaCl · Argon2 · Valkey</div></article>
-          <article class="service-row"><div class="service-date">Aug 2024 — May 2025</div><div><h3>Backend Engineer · Grassroots Economics</h3><p>Designed and deployed a USSD client for custodial wallets and EVM-based community asset vouchers. The live Sarafu Network system handles 300+ blockchain transactions a day.</p></div><div class="service-stack">Go · Docker<br>PostgreSQL · NATS<br>USSD · EVM</div></article>
-          <article class="service-row"><div class="service-date">Nov 2022 — Nov 2024</div><div><h3>Backend Engineer · Payments</h3><p>Built Stripe and PayPal webhook integrations, connected Zoho CRM with AWS services, and developed serverless REST APIs and scheduled payment-data syncs.</p></div><div class="service-stack">TypeScript · Node.js<br>AWS Lambda · CDK<br>Express · MySQL</div></article>
-          <article class="service-row"><div class="service-date">Jul 2020 — Feb 2022</div><div><h3>Backend Engineer · Swings</h3><p>Introduced Protocol Buffers to reduce bandwidth, designed service communication and data models, and supported frontend/backend integration.</p></div><div class="service-stack">Kotlin · Go<br>Protocol Buffers<br>MongoDB · MySQL</div></article>
-        </div>
-        <div class="education"><div><span class="eyebrow section-label">Education</span><h3>BSc Software Engineering</h3></div><p>Murang'a University of Technology<br>Kenya</p></div>
-      </div>
-    </section>
-    <section class="section kit-section" id="kit">
-      <div class="wrap">
-        <div class="section-head"><div><p class="eyebrow section-label">03 / Tools of the trade</p><h2>The kit</h2></div><p class="section-aside">A practical toolkit, shaped by the work rather than the other way around.</p></div>
-        <div class="kit-grid">
-          <div class="kit-item"><h3>Languages</h3><p>Go · TypeScript · JavaScript · Kotlin · Python · SQL · Bash</p></div>
-          <div class="kit-item"><h3>Backend &amp; tools</h3><p>Node.js · Express · REST · WebSockets · AWS (Lambda, SAM, CDK) · NATS · Protocol Buffers · Docker · Git · Swagger</p></div>
-          <div class="kit-item"><h3>Domains</h3><p>Financial market data · Algorithmic trading · Real-time data · USSD · Stripe and PayPal payments · EVM and blockchain · Double-entry accounting · Applied cryptography</p></div>
-          <div class="kit-item"><h3>Databases</h3><p>PostgreSQL · MySQL · MongoDB · Valkey</p></div>
-        </div>
-        <p class="kit-note">Always reading the logs first.</p>
-      </div>
-    </section>
-    <section class="contact-section" id="contact">
-      <div class="wrap contact-grid"><div><p class="eyebrow">04 / Contact</p><h2>Send a dispatch.</h2><p>Have a project, a role, or a question? I read everything.</p></div><div class="contact-links"><a href="mailto:carlosokumu254@gmail.com">carlosokumu254@gmail.com ↗</a><a href="https://github.com/Carlosokumu" target="_blank" rel="noreferrer">github.com/Carlosokumu ↗</a></div></div>
-    </section>
-  </main>
-  <footer><div class="wrap footer-inner"><span>© 2026 Okumu Carlos · Nairobi, Kenya</span><a href="#top">Back to top ↑</a></div></footer>
+<div style="--accent: #a8421f; --wear: 0.55; min-height:100vh; background:radial-gradient(ellipse at 50% 0%,#2a2016 0%,#14100b 62%,#0b0907 100%); padding:28px 20px 56px; color:#ecdcae">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<filter id="grain" x="0" y="0" width="100%" height="100%">
+<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="4" result="n"></feTurbulence>
+<feColorMatrix in="n" type="matrix" values="0 0 0 0 0.25  0 0 0 0 0.16  0 0 0 0 0.06  0 0 0 1.4 -0.35"></feColorMatrix>
+</filter>
+<pattern id="rings" width="40" height="30" patternUnits="userSpaceOnUse">
+<ellipse cx="20" cy="15" rx="15" ry="5.5" fill="none" stroke="#0e0b08" stroke-width="5"></ellipse>
+<ellipse cx="20" cy="14" rx="15" ry="5.5" fill="none" stroke="#5b564f" stroke-width="1.6"></ellipse>
+</pattern>
+</svg>
+
+<!-- NAV -->
+<div style="max-width:1240px;margin:0 auto 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 28px">
+<div class="oswald" style="font-size:22px;font-weight:700;letter-spacing:.18em;color:#ecdcae">O<span style="color:#d9784a">.</span>C<span style="color:#d9784a">.</span> Field Notes</div>
+<nav aria-label="Sections" class="type" style="display:flex;flex-wrap:wrap;gap:6px 26px">
+<a class="navlink" href="#service-record">Service Record</a>
+<a class="navlink" href="#dispatches">Dispatches</a>
+<a class="navlink" href="#kit">Kit</a>
+<a class="navlink" href="#contact">Contact</a>
+</nav>
+</div>
+
+<!-- SPREAD 1: HERO -->
+<section aria-label="Introduction" style="position:relative;max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;border-radius:6px;box-shadow:7px 7px 0 -1px #b99e62,14px 12px 0 -2px #a58a50,0 40px 70px rgba(0,0,0,.65)">
+<div class="paper pg" style="border-radius:6px 0 0 6px;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+
+<div style="position:relative;max-width:430px;margin:8px auto 0;transform:rotate(-1.6deg)">
+<div class="tape" style="top:-18px;left:50%;margin-left:-64px;transform:rotate(2deg)"></div>
+<div class="torn" style="background:#efe2bb;padding:34px 30px 30px;box-shadow:0 10px 22px rgba(60,40,15,.35)">
+<svg viewBox="0 0 260 150" width="100%" role="img" aria-label="Contour map with a pin marking Nairobi" style="display:block">
+<g fill="none" stroke="#5a4630" stroke-width="1">
+<path d="M18 80C22 40 70 14 128 18c52 4 100 26 108 62 7 34-34 58-92 62-62 4-130-8-126-62z"></path>
+<path d="M40 80c4-30 42-48 88-45 42 3 78 20 84 46 5 25-26 42-70 45-48 3-106-6-102-46z"></path>
+<path d="M62 80c4-20 30-32 64-30 30 2 56 14 60 32 3 17-18 28-50 30-36 2-78-4-74-32z"></path>
+<path d="M88 80c3-11 18-17 38-16 18 1 32 8 34 18 2 9-10 15-30 16-22 1-45-3-42-18z"></path>
+</g>
+<path d="M14 118c40-12 70 8 110-4s70-30 120-10" fill="none" stroke="#7a2f14" stroke-width="1.4" stroke-dasharray="4 4"></path>
+<circle cx="132" cy="81" r="7" fill="var(--accent)"></circle>
+<circle cx="132" cy="81" r="12" fill="none" stroke="var(--accent)" stroke-width="1.4"></circle>
+</svg>
+<p class="type" style="margin:14px 0 4px;font-size:13px;letter-spacing:.1em;color:#5a4630">NAIROBI, KENYA · 1.29°S 36.82°E</p>
+<hr style="border:0;border-top:1px solid #8a7048;margin:10px 0 14px">
+<p class="type" style="margin:0 0 8px;font-size:15px;line-height:1.55"><b>de·vel·op·er</b>, <i>n.</i></p>
+<p class="type" style="margin:0 0 6px;font-size:14px;line-height:1.55">a. One who builds software systems and market-data tooling, in Go, TypeScript, Python and Kotlin.</p>
+<p class="type" style="margin:0 0 6px;font-size:14px;line-height:1.55">b. Slang: a person who reads the logs before the docs.</p>
+<p class="type" style="margin:0;font-size:14px;line-height:1.55">c. The keeper of this notebook.</p>
+</div>
+</div>
+
+<p class="hand" style="position:relative;margin:26px 0 0 18px;font-size:30px;line-height:1.1;color:#4a2a18;transform:rotate(-3deg);max-width:300px">built in Nairobi, shipped everywhere →</p>
+
+<div aria-hidden="true" style="position:absolute;left:34px;bottom:30px;width:104px;height:104px;border-radius:50%;border:5px solid rgba(92,52,22,.22);box-shadow:inset 0 0 0 3px rgba(92,52,22,.1)"></div>
+</div>
+
+<div class="paper pg" style="border-radius:0 6px 6px 0;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+
+<div style="position:relative;padding-bottom:110px">
+<p class="type" style="margin:0 0 6px;font-size:15px;letter-spacing:.2em;color:#5a4630">PORTFOLIO · VOL. 01</p>
+<h1 class="oswald" style="margin:0;font-size:clamp(48px,7vw,90px);font-weight:700;line-height:.98;letter-spacing:.03em;color:#2b2014">Okumu Carlos</h1>
+<div aria-hidden="true" style="margin:14px 0 22px;border-top:3px solid #2b2014;border-bottom:1px solid #2b2014;height:7px"></div>
+
+<h2 class="oswald" style="margin:0 0 6px;font-size:34px;font-weight:700;color:#2b2014">Software Engineer</h2>
+<div aria-hidden="true" style="height:2px;background:#2b2014;opacity:.55;margin-bottom:6px"></div>
+
+<div>
+<a class="menu-row" href="#service-record" style="background:var(--accent);color:#f6ebcf">Service Record<span class="type" style="text-transform:none;letter-spacing:0;font-size:14px;margin-left:12px;opacity:.95">where I've worked</span></a>
+<a class="menu-row" href="#dispatches">Dispatches<span class="type" style="text-transform:none;letter-spacing:0;font-size:14px;margin-left:12px;color:#5a4630">selected projects</span></a>
+<a class="menu-row" href="#kit">Kit<span class="type" style="text-transform:none;letter-spacing:0;font-size:14px;margin-left:12px;color:#5a4630">tools of the trade</span></a>
+<a class="menu-row" href="#contact">Contact<span class="type" style="text-transform:none;letter-spacing:0;font-size:14px;margin-left:12px;color:#5a4630">send a dispatch</span></a>
+</div>
+
+<p class="type" style="margin:30px 0 0;font-size:17px;line-height:1.65;max-width:520px">Software engineer in Go, TypeScript, Python and Kotlin, focused on financial market data, payments and USSD.</p>
+
+<svg aria-hidden="true" width="150" height="110" viewBox="0 0 150 110" style="position:absolute;right:-6px;bottom:-34px;opacity:.9">
+<path d="M70 18c20-6 44 4 52 22 8 20-4 40-26 46-20 6-44-2-52-20-8-18 6-42 26-48z" fill="#4b1a10"></path>
+<circle cx="120" cy="30" r="6" fill="#4b1a10"></circle>
+<circle cx="44" cy="20" r="4" fill="#4b1a10"></circle>
+<path d="M82 84c1 8 1 14-1 20" stroke="#4b1a10" stroke-width="5" stroke-linecap="round" fill="none"></path>
+<path d="M104 80c2 6 2 10 0 14" stroke="#4b1a10" stroke-width="4" stroke-linecap="round" fill="none"></path>
+</svg>
+</div>
+</div>
+
+<svg class="rings" aria-hidden="true" width="40" style="position:absolute;left:50%;top:18px;bottom:18px;height:calc(100% - 36px);margin-left:-20px"><rect width="40" height="100%" fill="url(#rings)"></rect></svg>
+</section>
+
+<!-- SPREAD: SERVICE RECORD -->
+<section id="service-record" aria-label="Service record, work experience" style="position:relative;max-width:1240px;margin:72px auto 0;display:flex;flex-wrap:wrap;border-radius:6px;box-shadow:7px 7px 0 -1px #b99e62,14px 12px 0 -2px #a58a50,0 40px 70px rgba(0,0,0,.65)">
+<div class="paper pg" style="border-radius:6px 0 0 6px;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+<div style="position:relative">
+<h2 class="oswald" style="margin:0;font-size:52px;font-weight:700;line-height:1">Service Record</h2>
+<div aria-hidden="true" style="height:2px;background:#2b2014;opacity:.55;margin:10px 0 8px"></div>
+
+<div class="entry">
+<div style="display:flex;align-items:baseline;gap:10px 16px;flex-wrap:wrap;justify-content:space-between">
+<h3 class="oswald" style="font-size:26px">Software Engineer</h3>
+<span class="stamp">Jun 2026 – Sep 2026</span>
+</div>
+<p class="type" style="font-size:15px;color:#5a4630;margin:4px 0 12px">Usawa (open source) · github.com/nolash/usawa</p>
+<ul class="type bullets">
+<li>Built features for a Python double-entry ledger with a GTK4/Adwaita interface, where entries are cryptographically signed and immutable.</li>
+<li>Refactored the entry model to support arbitrary multi-part entries; added end-to-end tag management, XML export and column sorting.</li>
+<li>Moved wallet encryption from GPG to NaCl SecretBox with argon2 key derivation; supports Unix socket and Valkey storage backends.</li>
+</ul>
+<p class="type" style="font-size:14px;color:#5a4630">[ Python · GTK4/Adwaita · NaCl · argon2 · Valkey · Git ]</p>
+</div>
+
+<div class="entry">
+<div style="display:flex;align-items:baseline;gap:10px 16px;flex-wrap:wrap;justify-content:space-between">
+<h3 class="oswald" style="font-size:26px">Backend Engineer</h3>
+<span class="stamp">Aug 2024 – May 2025</span>
+</div>
+<p class="type" style="font-size:15px;color:#5a4630;margin:4px 0 12px">Grassroots Economics · Kilifi, Kenya (Remote)</p>
+<ul class="type bullets">
+<li>First USSD engineering hire; designed and experimented with a new USSD menu driver.</li>
+<li>Built and deployed a USSD client for managing custodial wallets and EVM-based Community Asset Vouchers. The live system handles 300+ blockchain transactions a day on the Sarafu Network (dial *384*96#).</li>
+<li>Built an internal menu-traversal driver that automates testing of USSD menu navigation.</li>
+<li>Created service templates, automation scripts and dependency-upgrade tooling to improve developer experience.</li>
+</ul>
+<p class="type" style="font-size:14px;color:#5a4630">[ Go · Docker · PostgreSQL · NATS · Git · EVM ]</p>
+</div>
+</div>
+</div>
+
+<div class="paper pg" style="border-radius:0 6px 6px 0;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+<div style="position:relative">
+<div class="entry" style="border-top:0;padding-top:0">
+<div style="display:flex;align-items:baseline;gap:10px 16px;flex-wrap:wrap;justify-content:space-between">
+<h3 class="oswald" style="font-size:26px">Backend Engineer</h3>
+<span class="stamp">Nov 2022 – Nov 2024</span>
+</div>
+<p class="type" style="font-size:15px;color:#5a4630;margin:4px 0 12px">KnightFox App Design Ltd · Kingston, Jamaica (Remote)</p>
+<ul class="type bullets">
+<li>Built Stripe and PayPal webhooks on AWS Lambda and SAM for SaaS payments.</li>
+<li>Integrated Zoho CRM with AWS services and implemented real-time payment data capture.</li>
+<li>Built scalable REST APIs with Node.js, Express and serverless functions, reducing development time by 30%.</li>
+<li>Automated payment-data sync with scheduled AWS CDK Lambda functions.</li>
+<li>Wrote Swagger documentation for all endpoints, improving frontend/backend coordination and cutting feature development time by 50%.</li>
+</ul>
+<p class="type" style="font-size:14px;color:#5a4630">[ TypeScript (Node.js) · Go · AWS · MySQL · Git · Bitbucket · Jira ]</p>
+</div>
+
+<div class="entry">
+<div style="display:flex;align-items:baseline;gap:10px 16px;flex-wrap:wrap;justify-content:space-between">
+<h3 class="oswald" style="font-size:26px">Backend Engineer</h3>
+<span class="stamp">Jul 2020 – Feb 2021</span>
+</div>
+<p class="type" style="font-size:15px;color:#5a4630;margin:4px 0 12px">SwingWizards · Kenya</p>
+<ul class="type bullets">
+<li>Introduced Protocol Buffers, reducing bandwidth by 40%.</li>
+<li>Designed the frontend communication protocol and worked with backend engineers on integration.</li>
+<li>Designed data models for MongoDB and MySQL.</li>
+</ul>
+<p class="type" style="font-size:14px;color:#5a4630">[ Kotlin (Android) · Go · Protocol Buffers · Git · GitHub ]</p>
+</div>
+
+<div class="entry">
+<h3 class="oswald" style="font-size:26px">Education</h3>
+<p class="type" style="font-size:16px;line-height:1.55;margin-top:8px">BSc Software Engineering · Murang’a University of Technology, Kenya</p>
+</div>
+</div>
+</div>
+<svg class="rings" aria-hidden="true" width="40" style="position:absolute;left:50%;top:18px;bottom:18px;height:calc(100% - 36px);margin-left:-20px"><rect width="40" height="100%" fill="url(#rings)"></rect></svg>
+</section>
+
+<!-- SPREAD 2: DISPATCHES -->
+<section id="dispatches" aria-label="Dispatches, selected projects" style="position:relative;max-width:1240px;margin:72px auto 0;display:flex;flex-wrap:wrap;border-radius:6px;box-shadow:7px 7px 0 -1px #b99e62,14px 12px 0 -2px #a58a50,0 40px 70px rgba(0,0,0,.65)">
+<div class="paper pg" style="border-radius:6px 0 0 6px;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+<div style="position:relative">
+<h2 class="oswald" style="margin:0;font-size:52px;font-weight:700;line-height:1">Dispatches</h2>
+<div aria-hidden="true" style="height:2px;background:#2b2014;opacity:.55;margin:10px 0 8px"></div>
+
+<div class="entry">
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+<span class="oswald" style="font-size:22px;font-weight:700;color:#7a2f14">01</span>
+<h3 class="oswald">ElimuCard</h3>
+<span class="stamp">In progress</span>
+</div>
+<p class="type" style="font-size:16px;line-height:1.6;margin-bottom:8px">A school canteen payment and biometric identity system for Kenya. Android app, architecture and roadmap.</p>
+<p class="type" style="font-size:14px;color:#5a4630">[ Android · Kotlin · Jetpack Compose ]</p>
+<p class="type" style="font-size:14px;color:#5a4630;margin-top:6px"><a href="https://drive.google.com/file/d/1AlfXSJQ2N7AdS3b-ysiEu5KqmzIqQfZT/view?usp=sharing" target="_blank" rel="noopener" style="color:#7a2f14">See demo</a></p>
+</div>
+
+<div class="entry">
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+<span class="oswald" style="font-size:22px;font-weight:700;color:#7a2f14">02</span>
+<h3 class="oswald">account-connect</h3>
+<span class="stamp">In progress</span>
+</div>
+<p class="type" style="font-size:16px;line-height:1.6;margin-bottom:8px">A Go service that normalizes cTrader, Binance and Alpaca into one WebSocket API: OHLC history, ticks, order books and live streams.</p>
+<p class="type" style="font-size:14px;color:#5a4630">[ Go · WebSockets · Protobuf · cTrader · Binance · Alpaca ]</p>
+<p class="type" style="font-size:14px;color:#5a4630;margin-top:6px"><a href="https://drive.google.com/file/d/1WLeV1l3LiA9MvhSoBUqoHiawnoPxZsYn/view?usp=sharing" target="_blank" rel="noopener" style="color:#7a2f14">See demo</a></p>
+<p class="type" style="font-size:14px;color:#5a4630;margin-top:6px">Repo: <a href="https://github.com/Carlosokumu/account-connect" style="color:#7a2f14">github.com/Carlosokumu/account-connect</a></p>
+</div>
+
+<div class="entry">
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+<span class="oswald" style="font-size:22px;font-weight:700;color:#7a2f14">03</span>
+<h3 class="oswald">Go-Vise</h3>
+<span class="stamp">Contribution</span>
+</div>
+<p class="type" style="font-size:16px;line-height:1.6;margin-bottom:8px">Contributor to Go-Vise for the Grassroots Economics Foundation: a constrained-size output virtual machine for USSD-based navigation.</p>
+<p class="type" style="font-size:14px;color:#5a4630">[ Go · USSD ]</p>
+<p class="type" style="font-size:14px;color:#5a4630;margin-top:6px">Repo: <a href="https://github.com/grassrootseconomics/Go-Vise" style="color:#7a2f14">github.com/grassrootseconomics/Go-Vise</a></p>
+</div>
+</div>
+</div>
+
+<div class="paper pg" style="border-radius:0 6px 6px 0;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+<div style="position:relative">
+<div class="entry" style="border-top:0;padding-top:0">
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+<span class="oswald" style="font-size:22px;font-weight:700;color:#7a2f14">04</span>
+<h3 class="oswald">Usawa</h3>
+<span class="stamp">Open source</span>
+</div>
+<p class="type" style="font-size:16px;line-height:1.6;margin-bottom:8px">A signed, immutable double-entry ledger with a GTK4/Adwaita interface. I refactored the entry model, added tag management, XML export and sorting, and moved wallet encryption from GPG to NaCl with argon2.</p>
+<p class="type" style="font-size:14px;color:#5a4630">[ Python · GTK4/Adwaita · NaCl · argon2 · Valkey ]</p>
+<p class="type" style="font-size:14px;color:#5a4630;margin-top:6px">Repo: <a href="https://github.com/nolash/usawa" style="color:#7a2f14">github.com/nolash/usawa</a></p>
+</div>
+
+<div style="margin-top:14px;border:2px dashed #6b5636;padding:20px 22px;transform:rotate(-0.8deg)">
+<p class="oswald" style="margin:0;font-size:22px;font-weight:700;color:#5a4630">05 · Next entry</p>
+<p class="hand" style="margin:6px 0 0;font-size:28px;line-height:1.1;color:#4a2a18">[ADD PROJECT] the next dispatch goes here</p>
+</div>
+</div>
+</div>
+<svg class="rings" aria-hidden="true" width="40" style="position:absolute;left:50%;top:18px;bottom:18px;height:calc(100% - 36px);margin-left:-20px"><rect width="40" height="100%" fill="url(#rings)"></rect></svg>
+</section>
+
+<!-- SPREAD 3: KIT + CONTACT -->
+<section aria-label="Kit and contact" style="position:relative;max-width:1240px;margin:72px auto 0;display:flex;flex-wrap:wrap;border-radius:6px;box-shadow:7px 7px 0 -1px #b99e62,14px 12px 0 -2px #a58a50,0 40px 70px rgba(0,0,0,.65)">
+<div id="kit" class="paper pg" style="border-radius:6px 0 0 6px;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+<div style="position:relative">
+<h2 class="oswald" style="margin:0;font-size:52px;font-weight:700;line-height:1">Kit</h2>
+<div aria-hidden="true" style="height:2px;background:#2b2014;opacity:.55;margin:10px 0 22px"></div>
+
+<div style="display:flex;flex-direction:column;gap:20px">
+<div>
+<p class="oswald" style="margin:0 0 4px;font-size:20px;font-weight:700;color:#7a2f14">Languages</p>
+<p class="type" style="margin:0;font-size:17px;line-height:1.6">Go · TypeScript · JavaScript · Kotlin · Python · SQL · Bash</p>
+</div>
+<div>
+<p class="oswald" style="margin:0 0 4px;font-size:20px;font-weight:700;color:#7a2f14">Backend and tools</p>
+<p class="type" style="margin:0;font-size:17px;line-height:1.6">Node.js · Express · REST · WebSockets · AWS (Lambda, SAM, CDK) · NATS · Protocol Buffers · Docker · Git · Swagger</p>
+</div>
+<div>
+<p class="oswald" style="margin:0 0 4px;font-size:20px;font-weight:700;color:#7a2f14">Domains</p>
+<p class="type" style="margin:0;font-size:17px;line-height:1.6">Financial market data · algorithmic trading · real-time data · USSD · payments (Stripe, PayPal) · EVM and blockchain · double-entry accounting · applied cryptography (NaCl, argon2)</p>
+</div>
+<div>
+<p class="oswald" style="margin:0 0 4px;font-size:20px;font-weight:700;color:#7a2f14">Databases</p>
+<p class="type" style="margin:0;font-size:17px;line-height:1.6">PostgreSQL · MySQL · MongoDB · Valkey</p>
+</div>
+</div>
+<p class="hand" style="margin:30px 0 0;font-size:30px;line-height:1.1;color:#4a2a18;transform:rotate(-2deg)">always reading the logs first.</p>
+</div>
+</div>
+
+<div id="contact" class="paper pg" style="border-radius:0 6px 6px 0;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:var(--wear)"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg></div>
+<div style="position:relative;max-width:420px;margin:12px auto 0;transform:rotate(1.4deg)">
+<div class="tape" style="top:-18px;left:50%;margin-left:-64px;transform:rotate(-3deg)"></div>
+<div class="torn" style="background:#efe2bb;padding:40px 32px 34px;box-shadow:0 10px 22px rgba(60,40,15,.35)">
+<h2 class="oswald" style="margin:0;font-size:40px;font-weight:700;line-height:1">Send a dispatch</h2>
+<div aria-hidden="true" style="height:2px;background:#2b2014;opacity:.55;margin:12px 0 16px"></div>
+<p class="type" style="margin:0 0 18px;font-size:16px;line-height:1.6">Have a project, a role or a question? I read everything.</p>
+<p class="type" style="margin:0 0 8px;font-size:16px">Email: <a href="mailto:carlosokumu254@gmail.com" style="color:#7a2f14">carlosokumu254@gmail.com</a></p>
+<p class="type" style="margin:0;font-size:16px">GitHub: <a href="https://github.com/Carlosokumu" style="color:#7a2f14">github.com/Carlosokumu</a></p>
+</div>
+</div>
+<p class="type" style="position:relative;margin:34px 0 0;text-align:center;font-size:14px;color:#5a4630">© 2026 Okumu Carlos · Nairobi, Kenya</p>
+</div>
+<svg class="rings" aria-hidden="true" width="40" style="position:absolute;left:50%;top:18px;bottom:18px;height:calc(100% - 36px);margin-left:-20px"><rect width="40" height="100%" fill="url(#rings)"></rect></svg>
+</section>
+
+</div>
 </body>
 </html>
